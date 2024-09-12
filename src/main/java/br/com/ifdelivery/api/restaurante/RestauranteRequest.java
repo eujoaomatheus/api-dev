@@ -3,8 +3,6 @@ package br.com.ifdelivery.api.restaurante;
 import br.com.ifdelivery.modelo.acesso.Usuario;
 import br.com.ifdelivery.modelo.restaurante.CategoriasEnum;
 import br.com.ifdelivery.modelo.restaurante.Restaurante;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -37,10 +35,11 @@ public class RestauranteRequest {
     private boolean aceitaDinheiro;
     private boolean aceitaValeRefeicao;
     private boolean aceitaValeAlimentacao;
+    private String photoBanner;
+    private String photoLogo;
 
   //  @Enumerated(EnumType.STRING)
  //   private CategoriasEnum categoria;
-
 
     private String categoria;
 
@@ -83,6 +82,8 @@ public class RestauranteRequest {
                 .aceitaDinheiro(aceitaDinheiro)
                 .aceitaValeRefeicao(aceitaValeRefeicao)
                 .aceitaValeAlimentacao(aceitaValeAlimentacao)
+                .photoLogo(photoLogo)
+                .photoBanner(photoBanner)
                 .categoriasEnum(CategoriasEnum.fromDescricao(categoria))
                 .build();
     }

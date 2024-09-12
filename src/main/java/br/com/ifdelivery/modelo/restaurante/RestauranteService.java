@@ -50,6 +50,16 @@ public class RestauranteService {
             restaurante.setNomeFantasia(restauranteAlterado.getNomeFantasia());
             restaurante.setRazaoSocial(restauranteAlterado.getRazaoSocial());
             restaurante.setCnpj(restauranteAlterado.getCnpj());
+            restaurante.setPhotoBanner(restaurante.getPhotoBanner());
+            restaurante.setPhotoLogo(restaurante.getPhotoLogo());
+            restaurante.setCidade(restauranteAlterado.getCidade());
+            restaurante.setCategoriasEnum(restauranteAlterado.getCategoriasEnum());
+            restaurante.setAceitaCartaoCredito(restauranteAlterado.isAceitaCartaoCredito());
+            restaurante.setAceitaCartaoDebito(restauranteAlterado.isAceitaCartaoDebito());
+            restaurante.setAceitaDinheiro(restauranteAlterado.isAceitaDinheiro());
+            restaurante.setAceitaPix(restauranteAlterado.isAceitaPix());
+            restaurante.setAceitaValeAlimentacao(restauranteAlterado.isAceitaValeAlimentacao());
+            restaurante.setAceitaValeRefeicao(restauranteAlterado.isAceitaValeRefeicao());
             restaurante.setCep(restauranteAlterado.getCep());
             restaurante.setEstado(restauranteAlterado.getEstado());
             restaurante.setBairro(restauranteAlterado.getBairro());
@@ -94,22 +104,4 @@ public class RestauranteService {
             else return restaurante.get();
 
         }
-    @Transactional
-    public String adicionarFoto(Long id, byte[] foto, String TipoDeFoto) {
-        try {
-            Restaurante restaurante = restauranteRepository.findById(id)
-                    .orElseThrow(() -> new RestauranteException(RestauranteException.MSG_RESTAURANTE_NOT_FOUND + " com id: " + id));
-            if(TipoDeFoto.equals("LOGO")) {
-                restaurante.setPhotoLogo(foto);
-            } else if(TipoDeFoto.equals("BANNER")) {
-                restaurante.setPhotoBanner(foto);
-            } else {
-                throw new RestauranteException("Tipo de foto inválido");
-            }
-            restauranteRepository.save(restaurante);
-            return "Foto adicionada com sucesso";
-        } catch (Exception e) {
-            throw new RestauranteException(RestauranteException.MSG_ERROR_UPDATING + ": " + e.getMessage());
-        }
-    }
 }

@@ -42,7 +42,4 @@ public class Produto extends EntidadeAuditavel {
     @JoinColumn(name = "categoria_produto_id")
     private CategoriaProduto categoriaProduto;
 
-    @Lob
-    @Column
-    byte[] photo;
 }

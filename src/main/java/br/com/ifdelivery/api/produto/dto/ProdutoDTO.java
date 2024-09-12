@@ -13,17 +13,17 @@ public class ProdutoDTO {
     private String codigo;
     private String titulo;
     private String descricao;
-    private byte[] photo;
+    private String imagem;
     private Double valorUnitario;
     @JsonIgnore
     private String categoriaNome;
 
-    public ProdutoDTO(Long id, String codigo, String titulo, String descricao, byte[] photo, Double valorUnitario) {
+    public ProdutoDTO(Long id, String codigo, String titulo, String descricao, String imagem, Double valorUnitario) {
         this.id = id;
         this.codigo = codigo;
         this.titulo = titulo;
         this.descricao = descricao;
-        this.photo = photo;
+        this.imagem = imagem;
         this.valorUnitario = valorUnitario;
     }
 }

@@ -90,7 +90,7 @@ public class CategoriaProdutoService {
                 String produtoCodigo = (String) result[4];
                 String produtoTitulo = (String) result[5];
                 String produtoDescricao = (String) result[6];
-                byte[] produtoImagem = (byte[]) result[7];
+                String produtoImagem = (String) result[7];
                 Double produtoValorUnitario = (Double) result[8];
 
                 ProdutoDTO produto = new ProdutoDTO(produtoId, produtoCodigo, produtoTitulo, produtoDescricao, produtoImagem, produtoValorUnitario);

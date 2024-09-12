@@ -1,11 +1,6 @@
 package br.com.ifdelivery.api.pedido;
 
 import br.com.ifdelivery.modelo.item_pedido.ItemPedido;
-import br.com.ifdelivery.modelo.pedido.Pedido;
-import br.com.ifdelivery.modelo.produto.Produto;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

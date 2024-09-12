@@ -1,6 +1,5 @@
 package br.com.ifdelivery.api.categoria_produto.dto;
 
-
 import br.com.ifdelivery.api.produto.dto.ProdutoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

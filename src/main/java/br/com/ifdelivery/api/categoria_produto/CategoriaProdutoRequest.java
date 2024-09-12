@@ -1,7 +1,6 @@
 package br.com.ifdelivery.api.categoria_produto;
 
 import br.com.ifdelivery.modelo.categoria_produto.CategoriaProduto;
-import br.com.ifdelivery.modelo.pedido.Pedido;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

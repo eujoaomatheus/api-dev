@@ -11,11 +11,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLRestriction;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "Pedidos")
+@EntityListeners(AuditingEntityListener.class)
 @SQLRestriction("habilitado = true")
 @Builder
 @Getter
@@ -52,38 +57,40 @@ public class Pedido extends EntidadeAuditavel {
     @Column(name = "status_pedido")
     private StatusEntregaEnum statusEntrega;
 
-    @JsonIgnore
+
     @Column(name = "CEP")
     private String cep;
 
-    @JsonIgnore
+
     @Column
     private String estado;
 
-    @JsonIgnore
+
     @Column
     private String cidade;
 
-    @JsonIgnore
+
     @Column
     private String bairro;
 
-    @JsonIgnore
+
     @Column
     private String rua;
 
-    @JsonIgnore
+
     @Column
     private String numero;
 
-    @JsonIgnore
+
     @Column
     private String complemento;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens;
 
-    @JsonIgnore
+    @CreatedDate
+    private LocalDateTime dataDoPedido;
+
     @Column
     private String observacao;
 

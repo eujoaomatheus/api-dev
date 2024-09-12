@@ -16,6 +16,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class PedidoService {
         pedido.setDataCriacao(LocalDate.now());
         pedido.setStatusEntrega(StatusEntregaEnum.PENDENTE);
         pedido.setStatusPgto(StatusPgtoEnum.PENDENTE);
+        pedido.setDataDoPedido(LocalDateTime.now());
 
         double valorTotal = 0;
 
@@ -67,14 +69,8 @@ public class PedidoService {
         pedido.setItens(itensPedido); // Defina a lista de itens no pedido
         pedido.setValorTotal(valorTotal); // Defina o valor total
 
-        // Salve o pedido primeiro para garantir que ele tenha um ID
+        // Salve o pedido, os itens serão salvos em cascata
         Pedido pedidoSalvo = pedidoRepository.save(pedido);
-
-        // Agora que o pedido foi salvo, salve os itens associados
-        for (ItemPedido item : itensPedido) {
-            item.setPedido(pedidoSalvo); // Certifique-se de que o item está associado ao pedido salvo
-            itemPedidoRepository.save(item);
-        }
 
         return pedidoSalvo; // Retorne o pedido salvo
     }
@@ -107,7 +103,9 @@ public class PedidoService {
     }
     @Transactional
     public Pedido atualizar(long id, Pedido pedidoAlterado) {
-        Pedido pedido = pedidoRepository.findById(id).orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
+        Pedido pedido = pedidoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Pedido não encontrado"));
+
         if (pedidoAlterado.getStatusEntrega() != null) {
             pedido.setStatusEntrega(pedidoAlterado.getStatusEntrega());
         }
